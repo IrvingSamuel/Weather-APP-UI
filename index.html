@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="weather-screen" aria-live="polite">
+        <header class="top-bar">
+          <button id="openSearchBtn" class="icon-btn" type="button" aria-label="Buscar cidade">
+            <span>+</span>
+          </button>
+          <div class="city-group">
+            <h1 id="cityName">Carregando...</h1>
+            <p id="todayDate">--</p>
+          </div>
+          <button id="refreshBtn" class="icon-btn" type="button" aria-label="Atualizar clima">
+            <span>R</span>
+          </button>
+        </header>
+
+        <section class="hero-weather">
+          <div class="hero-text">
+            <img id="currentIcon" src="" alt="Icone do clima" class="weather-icon" />
+            <p id="currentTemp" class="temperature">-- C</p>
+            <p id="currentDesc" class="weather-desc">Carregando dados meteorologicos...</p>
+            <p id="hiLo" class="high-low">H: -- C  L: -- C</p>
+          </div>
+          <img id="houseArt" src="assets/House 4 3.png" alt="Casa cenica" class="house-art" />
+        </section>
+
+        <section class="stats-grid" id="statsGrid">
+          <article class="metric-card"><h3>UV INDEX</h3><p id="uvIndex">--</p></article>
+          <article class="metric-card"><h3>SUNRISE</h3><p id="sunrise">--:--</p></article>
+          <article class="metric-card"><h3>WIND</h3><p id="wind">-- km/h</p></article>
+          <article class="metric-card"><h3>RAINFALL</h3><p id="rainfall">-- mm</p></article>
+          <article class="metric-card"><h3>FEELS LIKE</h3><p id="feelsLike">-- C</p></article>
+          <article class="metric-card"><h3>HUMIDITY</h3><p id="humidity">--%</p></article>
+          <article class="metric-card"><h3>VISIBILITY</h3><p id="visibility">-- km</p></article>
+          <article class="metric-card"><h3>PRESSURE</h3><p id="pressure">-- hPa</p></article>
+        </section>
+
+        <section class="forecast-panel">
+          <div class="segment-control" role="tablist" aria-label="Tipo de previsao">
+            <button id="hourlyTab" class="segment-btn active" role="tab" aria-selected="true" type="button">Hourly Forecast</button>
+            <button id="weeklyTab" class="segment-btn" role="tab" aria-selected="false" type="button">Weekly Forecast</button>
+          </div>
+
+          <div id="hourlyView" class="forecast-view show">
+            <div id="hourlyList" class="hourly-list"></div>
+          </div>
+
+          <div id="weeklyView" class="forecast-view">
+            <ul id="weeklyList" class="weekly-list"></ul>
+          </div>
+        </section>
+
+        <p id="statusMessage" class="status-message">Inicializando...</p>
+      </section>
+
+      <section id="searchOverlay" class="search-overlay hidden" aria-hidden="true">
+        <div class="search-screen">
+          <header class="search-header-big">
+            <button id="closeSearchBtn" class="icon-btn" type="button" aria-label="Fechar busca">&lt;</button>
+            <h2>Weather</h2>
+            <button class="icon-btn" type="button" aria-label="Mais opcoes">...</button>
+          </header>
+
+          <form id="searchForm" class="search-form-big">
+            <input id="cityInput" type="text" placeholder="Search for a city" autocomplete="off" required />
+            <button type="submit">Buscar</button>
+          </form>
+
+          <div id="cityCards" class="city-cards"></div>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
