@@ -65,6 +65,7 @@ function formatHour(timestamp, timezoneOffsetSeconds = 0) {
   const date = new Date((timestamp + timezoneOffsetSeconds) * 1000);
   return date.toLocaleTimeString("pt-BR", {
     timeZone: "UTC",
+    hour12: false,
     hour: "2-digit",
     minute: "2-digit",
   });
@@ -172,6 +173,8 @@ function buildWeeklyData(list = [], timezoneOffset = 0) {
         min: item.main.temp_min,
         max: item.main.temp_max,
         desc: item.weather?.[0]?.description || "-",
+        icon: item.weather?.[0]?.icon || "01d",
+        conditionId: item.weather?.[0]?.id || 800,
       });
       continue;
     }
@@ -191,6 +194,8 @@ function buildWeeklyData(list = [], timezoneOffset = 0) {
       desc: day.desc,
       min: Math.round(day.min),
       max: Math.round(day.max),
+      icon: day.icon,
+      conditionId: day.conditionId,
     }));
 }
 
@@ -247,8 +252,10 @@ function renderForecast(forecast) {
     const row = document.createElement("li");
     row.innerHTML = `
       <span class="day-name">${day.name}</span>
+      <img class="day-icon" src="${getWeatherIcon(day.icon, day.conditionId)}" alt="icone ${day.desc}" width="40" height="40" />
       <span class="day-desc">${day.desc}</span>
-      <span class="day-temp">${day.max} C / ${day.min} C</span>
+      <span class="day-temp">${day.max} C</span>
+      <span class="day-desc">L: ${day.min} C</span>
     `;
     weeklyListEl.appendChild(row);
   }
@@ -291,12 +298,12 @@ async function buildCityCards() {
       card.type = "button";
       card.className = "city-weather-card";
       card.innerHTML = `
-        <div>
-          <div class="city-card-temp">${Math.round(data.current.main.temp)} C</div>
+        <div class="card-weather-city">
+          <div class="city-card-temp">${Math.round(data.current.main.temp)}º</div>
           <div class="city-card-meta">H:${Math.round(data.current.main.temp_max)}  L:${Math.round(data.current.main.temp_min)}</div>
           <div class="city-card-name">${data.current.name}, ${data.current.sys.country}</div>
         </div>
-        <div>
+        <div class="card-icon-city">
           <img src="${getWeatherIcon(weatherInfo.icon || "01d", weatherInfo.id || 800)}" alt="icone de ${weatherInfo.description || city}" />
           <div class="city-card-desc">${weatherInfo.description || "--"}</div>
         </div>

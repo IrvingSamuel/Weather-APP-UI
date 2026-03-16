@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
   </head>
   <body>
     <main class="app-shell">
@@ -24,7 +25,15 @@
             <p id="todayDate">--</p>
           </div>
           <button id="refreshBtn" class="icon-btn" type="button" aria-label="Atualizar clima">
-            <span>R</span>
+            <span class="icon-span">
+                <lord-icon
+                    src="https://cdn.lordicon.com/euaablbm.json"
+                    trigger="loop-on-hover"
+                    stroke="bold"
+                    colors="primary:#ffffff,secondary:#6c58ac"
+                    style="width:25px;height:25px">
+                </lord-icon>
+            </span>
           </button>
         </header>
 
@@ -51,8 +60,8 @@
 
         <section class="forecast-panel">
           <div class="segment-control" role="tablist" aria-label="Tipo de previsao">
-            <button id="hourlyTab" class="segment-btn active" role="tab" aria-selected="true" type="button">Hourly Forecast</button>
-            <button id="weeklyTab" class="segment-btn" role="tab" aria-selected="false" type="button">Weekly Forecast</button>
+            <button id="hourlyTab" class="segment-btn active" role="tab" aria-selected="true" type="button">Previsão Horária</button>
+            <button id="weeklyTab" class="segment-btn" role="tab" aria-selected="false" type="button">Previsao Semanal</button>
           </div>
 
           <div id="hourlyView" class="forecast-view show">
@@ -70,9 +79,16 @@
       <section id="searchOverlay" class="search-overlay hidden" aria-hidden="true">
         <div class="search-screen">
           <header class="search-header-big">
-            <button id="closeSearchBtn" class="icon-btn" type="button" aria-label="Fechar busca">&lt;</button>
-            <h2>Weather</h2>
-            <button class="icon-btn" type="button" aria-label="Mais opcoes">...</button>
+            <button id="closeSearchBtn" class="icon-btn" type="button" aria-label="Fechar busca">
+                <lord-icon
+                    src="https://cdn.lordicon.com/jzzzcrxv.json"
+                    trigger="hover"
+                    stroke="bold"
+                    colors="primary:#ffffff,secondary:#6c58ac"
+                    style="width:25px;height:25px">
+                </lord-icon>
+            </button>
+            <h2>Clima</h2>
           </header>
 
           <form id="searchForm" class="search-form-big">
